@@ -10,20 +10,20 @@
 <body>
     <div class="container2">
         <h1>
-        Chris Graham
+            Chris Graham
         </h1>        
     </div>
 
     <div class="container">
         <div class="tab_box">
-            <button class="tab_btn active">Home</button>
-            <button class="tab_btn">Certificates</button>
-            <button class="tab_btn">Resume</button>
+            <button class="tab_btn active" onclick="showContent('home')">Home</button>
+            <button class="tab_btn" onclick="showContent('certifications')">Certificates</button>
+            <button class="tab_btn" onclick="showContent('resume')">Resume</button>
             <div class="line"></div>
         </div>
 
         <div class="content_box">
-            <div class="content active" >
+            <div class="content active" id="home">
                 <div class="info_box">
                     <h4 class="home">Personal Info</h4>
                     <div>
@@ -31,18 +31,14 @@
                     </div>
                
                     <div>
-                        <p style="text-indent: 40px; margin-top: 20px;">Although my job is secure and I enjoy what I do I am looking to further my experiences and abilties by learning web development as well as data analytics.  Over the past several years through online bootcamps and LinkedIn Learning training videos I have earned college-accredited certificates in the field of web development and data sciences. I look forward to the opportunity to put them to use and put my skills to practical use in the field.</p>
+                        <p style="text-indent: 40px; margin-top: 20px;">Although my job is secure and I enjoy what I do I am looking to further my experiences and abilities by learning web development as well as data analytics.  Over the past several years through online bootcamps and LinkedIn Learning training videos I have earned college-accredited certificates in the field of web development and data sciences. I look forward to the opportunity to put them to use and put my skills to practical use in the field.</p>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="content_box">
-            <div class="content">
+            <div class="content" id="certifications">
                 <div class="info_box">
-                    <h4 class="home">Links</h4>
-                    <div>
-                
+                    <h4 class="home">Certificates</h4>
                     <div class="tab-container">
                         <div class="tab-item active" onclick="showContent('projects')">Projects</div>
                         <div class="tab-item" onclick="showContent('linkedin')">LinkedIn</div>
@@ -52,17 +48,11 @@
                     <div class="content-box active" id="projects">
                         <h4>Projects</h4>
                         <!-- Link to CodePen project 1 -->
-<a href="https://codepen.io/Rahmga/pen/ExGaKVr" class="project-link" target="_blank">Project 1</a>
-
-<!-- Link to CodePen project 2 -->
-<a href="https://codepen.io/Rahmga/pen/bGONEZB" class="project-link" target="_blank">Project 2</a>
-
-<!-- Link to CodePen project 3 -->
-<a href="https://codepen.io/Rahmga/pen/GRwwEZG" class="project-link" target="_blank">Project 3</a>
-
-<!-- Repeat for more projects as needed -->
-                        <!-- Your Projects Content Goes Here -->
-                        
+                        <a href="https://codepen.io/Rahmga/pen/ExGaKVr" class="project-link" target="_blank">Project 1</a>
+                        <!-- Link to CodePen project 2 -->
+                        <a href="https://codepen.io/Rahmga/pen/bGONEZB" class="project-link" target="_blank">Project 2</a>
+                        <!-- Link to CodePen project 3 -->
+                        <a href="https://codepen.io/Rahmga/pen/GRwwEZG" class="project-link" target="_blank">Project 3</a>
                     </div>
                     
                     <div class="content-box" id="linkedin">
@@ -71,8 +61,7 @@
                     </div>
                     
                     <div class="content-box" id="certifications">
-                        
-                        <!-- Your Certifications Content Goes Here -->
+                        <h4>Certifications</h4>
                         <p>LinkedIn Learning Certificates</p>
                         <ul>
                             <li>Become a Data Analyst</li>
@@ -81,20 +70,17 @@
                         </ul>
                         <p style="margin-top: 20px;">Nucamp</p>
                         <ul>
-                        <li>Backend Web Development</li>
+                            <li>Backend Web Development</li>
                         </ul>
                         <p style="margin-top: 20px;">New Hampshire Technical Institute</p>
                         <ul>
-                        <li>Computer Aided Drawing, Revit, Microstation</li>
+                            <li>Computer Aided Drawing, Revit, Microstation</li>
                         </ul>
                     </div>
-                    </div>
-                 </div>
+                </div>
             </div>
-        </div>
 
-        <div class="content_box" style="font-size: 18px;">
-            <div class="content">
+            <div class="content" id="resume" style="font-size: 18px;">
                 <div class="info_box">
                     <h1 class="home" style="font-size: 24px;">Education</h1>
                     <ul>
@@ -139,39 +125,38 @@
     </div>
 
     <script>
-        const tabs= document.querySelectorAll('.tab_btn');
-        const all_content= document.querySelectorAll('.content');
+        const tabs = document.querySelectorAll('.tab_btn');
+        const allContent = document.querySelectorAll('.content');
 
-        tabs.forEach((tab,index)=>{
-            tab.addEventListener('click', (e)=>{
-                tabs.forEach(tab=>{tab.classList.remove('active')});
+        tabs.forEach((tab, index) => {
+            tab.addEventListener('click', (e) => {
+                tabs.forEach(tab => { tab.classList.remove('active') });
                 tab.classList.add('active');
 
-                var line=document.querySelector('.line');
+                const line = document.querySelector('.line');
                 line.style.width = e.target.offsetWidth + "px";
                 line.style.left = e.target.offsetLeft + "px";
 
-                all_content.forEach(content=>{content.classList.remove('active')});
-                all_content[index].classList.add('active');
-            }) 
-        })
+                allContent.forEach(content => { content.classList.remove('active') });
+                allContent[index].classList.add('active');
+            })
+        });
 
-        
-    // JavaScript to handle tab navigation
-    function showContent(id) {
-        // Hide all content boxes
-        document.querySelectorAll('.content-box').forEach(function(box) {
-            box.classList.remove('active');
-        });
-        // Deactivate all tabs
-        document.querySelectorAll('.tab-item').forEach(function(tab) {
-            tab.classList.remove('active');
-        });
-        // Show the clicked content box
-        document.getElementById(id).classList.add('active');
-        // Activate the clicked tab
-        document.querySelector('.tab-item[data-target="' + id + '"]').classList.add('active');
-    }
+        // JavaScript to handle tab navigation
+        function showContent(id) {
+            // Hide all content boxes
+            document.querySelectorAll('.content-box').forEach(function(box) {
+                box.classList.remove('active');
+            });
+            // Deactivate all tabs
+            document.querySelectorAll('.tab-item').forEach(function(tab) {
+                tab.classList.remove('active');
+            });
+            // Show the clicked content box
+            document.getElementById(id).classList.add('active');
+            // Activate the clicked tab
+            document.querySelector('.tab-item[data-target="' + id + '"]').classList.add('active');
+        }
     </script>
 </body>
 </html>
